@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Roslina</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class='view row' style="margin-left:0">
+        <div class='seatsChoosingSite col-md-9 d-flex align-items-center'>
+            <div class="container screenAndSeats">
+                <div class='d-flex align-items-center justify-content-center'>
+                    <div class='screen'>
+                        <h1>EKRAN</h1>
+                    </div>
+                </div>
+                <div class="firstRow d-flex justify-content-center">
+                    <div class='seat' id='1'>
+                        1
+                    </div>
+                    <div class='seat' id='2'>
+                        2
+                    </div>
+                    <div class='seat' id='3'>
+                        3
+                    </div>
+                    <div class='seat' id='4'>
+                        4
+                    </div>
+                    <div class='gap'>
+                         
+                    </div>
+                    <div class='seat' id='5'>
+                        5
+                    </div>
+                    <div class='seat' id='6'>
+                        6
+                    </div>
+                    <div class='seat' id='7'>
+                        7
+                    </div>
+                    <div class='seat' id='8'>
+                        8
+                    </div>
+                </div>
+                <div class="firstRow d-flex justify-content-center">
+                    <div class='seat' id='9'>
+                        9
+                    </div>
+                    <div class='seat' id='10'>
+                        10
+                    </div>
+                    <div class='seat' id='11'>
+                        11
+                    </div>
+                    <div class='seat' id='12'>
+                        12
+                    </div>
+                    <div class='gap'>
+                        
+                    </div>
+                    <div class='seat' id='13'>
+                        13
+                    </div>
+                    <div class='seat' id='14'>
+                        14
+                    </div>
+                    <div class='seat' id='15'>
+                        15
+                    </div>
+                    <div class='seat' id='16'>
+                        16
+                    </div>
+                </div>
+                <div class="firstRow d-flex justify-content-center">
+                    <div class='seat' id='18'>
+                        17
+                    </div>
+                    <div class='seat' id='19'>
+                        19
+                    </div>
+                    <div class='seat' id='20'>
+                        20
+                    </div>
+                    <div class='seat' id='21'>
+                        21
+                    </div>
+                    <div class='gap'>
+                
+                    </div>
+                    <div class='seat' id='22'>
+                        23
+                    </div>
+                    <div class='seat' id='24'>
+                        24
+                    </div>
+                    <div class='seat' id='25'>
+                        25
+                    </div>
+                    <div class='seat' id='26'>
+                        26
+                    </div>
+                </div>
+                <div class="firstRow d-flex justify-content-center">
+                    <div class='seat' id='27'>
+                        27
+                    </div>
+                    <div class='seat' id='28'>
+                        28
+                    </div>
+                    <div class='seat' id='29'>
+                        29
+                    </div>
+                    <div class='seat' id='30'>
+                        30
+                    </div>
+                    <div class='gap'>
+                
+                    </div>
+                    <div class='seat' id='31'>
+                        32
+                    </div>
+                    <div class='seat' id='33'>
+                        33
+                    </div>
+                    <div class='seat' id='34'>
+                        34
+                    </div>
+                    <div class='seat' id='35'>
+                        35
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='optionsChoosingSite col-md-3 d-flex flex-column justify-content-around'>
+            <div class='choosingRow'>
+               <h4>Wybrane miejsca: </h4>
+               <div class="choosenSeat" style="text-align: center; font-size:300%;">
+                    Brak
+               </div>
+            </div>
+            <div class='choosingRow '>
+                <h4>Wybierz rodzaj biletów: </h4>
+                <div class="form-group">
+                        <select id="typeOfTicket" class="form-control">
+                            <option value='25'>Normalny: 25 PLN</option>
+                            <option value='15'>Ulgowy: 15 PLN</option>
+                            <option value='18'>Senior: 18 PLN</option>
+                        </select>
+                    </div>
+                <button type="button" class="btn btn-light dodaj" style='margin-bottom:10px;'>Dodaj!</button>
+            </div>
+            <div class='choosingRow'>
+                <div>
+                    <h5>Wybrano miejsca: <span id='addedSeats'></span></h>
+                </div>
+                <div>
+                    <h5>Do zapłaty: <span id='sumToPay'></span></h>
+                </div>
+                <button type="button" class="btn btn-danger d-inline-block" style='margin-bottom:10px;' id='buttonReset'>Reset!</button>
+                <button type="button" class="btn btn-success d-inline-block" style='margin-bottom:10px;'>Zapłać!</button>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        
+        // Wybór miejsca
+        document.addEventListener('click', function (e) {
+        
+            if (e.target.className === 'seat') {
+                let choose = e.target.id
+                let targetLoc = document.querySelector('.choosenSeat')
+                let choosenSeat = document.getElementById(`${choose}`) 
+                targetLoc.innerText = choosenSeat.id }   
+        })
+        
+        // Dodawania miejsca
+        const addButton = document.querySelector('.dodaj');
+        const typeOfTicket = document.getElementById('typeOfTicket')
+        let targetLoc = document.querySelector('.choosenSeat')
+        var addedSeats = []
+        let listOfChoosen = document.getElementById('addedSeats')
+        let toPay = null
+        const sumToPay = document.getElementById('sumToPay')
+
+        addButton.addEventListener('click', (e)=>{
+                if (targetLoc.innerText!=='Brak' && addedSeats.includes(targetLoc.innerText)!==true) {
+                    addedSeats.push(targetLoc.innerText)
+                    listOfChoosen.innerText = addedSeats
+                    toPay += Number(`${typeOfTicket.value}`)
+                    sumToPay.innerText = toPay
+                }
+                else if (targetLoc.innerText !== 'Brak' && addedSeats.includes(targetLoc.innerText) !== false) {alert('Wybrano już to miejsce!')}
+                else if (targetLoc.innerText === 'Brak' && addedSeats.includes(targetLoc.innerText) !== true) { alert('Nie wybrano żadnego miejsca!')}
+
+                addedSeats.forEach(element => {
+                colorElementRed(`${element}`)
+            });
+        })
+
+    //Reset
+
+    let reseting = function () {
+        document.location.reload()
+    }
+
+    const buttonReset = document.getElementById('buttonReset')
+    buttonReset.addEventListener('click', reseting)
+
+    // Kolor zarezerwowanych
+    function colorElementRed(id) {
+            var el = document.getElementById(id);
+            el.style.background = "rgba(29, 170, 29, 0.801)";
+        }  
+        
+    </script>
+</body>
+</html>
